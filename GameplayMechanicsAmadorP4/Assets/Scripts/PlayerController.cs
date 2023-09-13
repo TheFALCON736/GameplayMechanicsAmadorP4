@@ -96,9 +96,9 @@ public class PlayerController : MonoBehaviour
         }
      }
 
-    IEnumerable Smash()
+    IEnumerator Smash()
     {
-        var enemies = FindAnyObjectByType<Enemy>();
+        var enemies = FindObjectsOfType<Enemy>();
 
         //store the y position before taking off
         floorY = transform.position.y;
@@ -124,7 +124,8 @@ public class PlayerController : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             //Apply an explosion force that originates from our position. 
-            if (enemies[i] != null) enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse); 
+            if (enemies[i]  != null) 
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse); 
         }
 
         //We are no longer smashing, so set the boolean to false 
